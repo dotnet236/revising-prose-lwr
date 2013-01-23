@@ -126,6 +126,29 @@ describe 'Revising Prose' do
           lard_factor(sentence, concise_sentence).should == 0.58
         end
       end
+
+      describe "The type of writing that I have an interest in is in the area of creative writing" do
+
+        it "contains the 'to be' form 'is'" do
+          sentence.should include ' is '
+        end
+
+        it "contains the active verb 'interest'"do
+          sentence.should include 'interest'
+        end
+
+        it "contains 4 prepositional phrases" do
+          sentence.should include 'of writing'
+          sentence.should include 'an interest'
+          sentence.should include 'in the area'
+          sentence.should include 'of creative writing'
+        end
+
+        it "could be written 'I want to study creative writing'" do
+          concise_sentence = 'I want to study creative writing'
+          lard_factor(sentence, concise_sentence).should == 0.65
+        end
+      end
     end
   end
 end
