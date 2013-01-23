@@ -61,7 +61,6 @@ describe 'Revising Prose' do
 
         it "could be written 'I believe inequality exists in the schools.'" do
           concise_sentence = 'I believe inequality exists in the schools'
-          concise_sentence.length.should be_less_than sentence.length
           lard_factor(sentence, concise_sentence).should == 0.73
         end
       end
@@ -81,8 +80,50 @@ describe 'Revising Prose' do
 
         it "could be written 'People usually resist new regulations.'" do
           concise_sentence = 'People usually resist new regulations.'
-          concise_sentence.length.should be_less_than sentence.length
           lard_factor(sentence, concise_sentence).should == 0.69
+        end
+      end
+
+      describe "'The project is likely to result in a minor population increase in the city from families relocating to the site from outside the community'" do
+        it "contains the 'to be' form 'is'" do
+          sentence.should include ' is '
+        end
+
+        it "contains 1 infinitive phrase 'to result'" do
+          sentence.should include 'to result'
+        end
+
+        it "contains 5 prepositional phrases" do
+          sentence.should include 'in a minor population increase'
+          sentence.should include 'in the city'
+          sentence.should include 'from families relocating'
+          sentence.should include 'to the site'
+          sentence.should include 'from outside the community'
+        end
+
+        it "contains 'The project' as the actor" do
+          sentence.should include 'The project'
+        end
+
+        it "contains the active verb 'increase'" do
+          sentence.should include ' increase '
+        end
+
+        it "could concisely replace 'a minor population increase from outside the city to inside the city' with 'attract'" do
+          'attract'.length.should be < 'a minor population increase from outside the city to inside the city'.length
+        end
+
+        it "could concisely replace 'from families relocating to the site from outside the community' with 'new families to the city'" do
+          'new families to the city'.length.should be < 'from families relocating to the site from outside the community'.length
+        end
+
+        it "could concisely replace 'is likely to result' with 'will probably'" do
+          'will probably'.length.should be < 'is likely to result'.length
+        end
+
+        it "could be written 'The project will probably attract new families to the city'" do
+          concise_sentence = 'The project will probably attract new families to the city'
+          lard_factor(sentence, concise_sentence).should == 0.58
         end
       end
     end
