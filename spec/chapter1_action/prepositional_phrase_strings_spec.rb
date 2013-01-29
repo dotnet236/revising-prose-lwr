@@ -149,6 +149,23 @@ describe 'Revising Prose' do
           lard_factor(sentence, concise_sentence).should == 0.65
         end
       end
+
+      describe "There are several examples of this selection process present in the Listerine ad." do
+
+        it "contains 2 prepositional strings" do
+          sentence.should include 'of this selection process'
+          sentence.should include 'in the Listerine ad'
+        end
+
+        it "could concisely replace 'several examples' with 'exemplifies'" do
+          exemplifies.length.should < 'several examples'.length
+        end
+
+        it "could be written 'The Listerine ad exemplifies this selection process.'" do
+          concise_sentence = 'The Listerine ad exemplifies this selection process.'
+          lard_factor(concise_sentence, sentence).should == 0.54
+        end
+      end
     end
   end
 end
