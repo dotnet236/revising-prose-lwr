@@ -53,9 +53,9 @@ class MarkdownFormatter < RSpec::Core::Formatters::BaseTextFormatter
   end
 
   def current_markup
-    spaces = ' ' * @group_level
-    markup_element = @group_level == 0 ? '### ' : '- '
-    spaces + markup_element
+    bullets = '*' * @group_level
+    markup_element = @group_level == 0 ? '###' : ''
+    bullets + markup_element
   end
 
   def example_group_chain

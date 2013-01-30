@@ -158,12 +158,12 @@ describe 'Revising Prose' do
         end
 
         it "could concisely replace 'several examples' with 'exemplifies'" do
-          exemplifies.length.should < 'several examples'.length
+          'exemplifies'.length.should < 'several examples'.length
         end
 
         it "could be written 'The Listerine ad exemplifies this selection process.'" do
           concise_sentence = 'The Listerine ad exemplifies this selection process.'
-          lard_factor(concise_sentence, sentence).should == 0.54
+          lard_factor(sentence, concise_sentence).should == 0.46
         end
       end
     end
