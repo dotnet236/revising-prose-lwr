@@ -1,5 +1,5 @@
 require 'rspec/core/formatters/base_text_formatter'
- 
+
 class MarkdownFormatter < RSpec::Core::Formatters::BaseTextFormatter
 
   def initialize(output)
@@ -45,18 +45,28 @@ class MarkdownFormatter < RSpec::Core::Formatters::BaseTextFormatter
   end
 
   def passed_output(example)
-    "#{current_markup}#{escape_markdown(example.description)}"
+    github_path = "https://github.com/dotnet236/revising-prose-lwr/blob/master/"
+    spec_path = URI.join(github_path, example.metadata[:file_path], "#L#{example.metadata[:line_number]}").to_s.strip
+    "#{current_markup(true)}[#{escape_markdown(example.description)}](#{spec_path})"
   end
 
   def pending_output(example, message)
-    "#{current_markup}#{escape_markdown(example.description)} (PENDING: #{message})"
+    "#{current_markup(true)}#{escape_markdown(example.description)} (PENDING: #{message})"
   end
 
-  def current_markup
-    bullets = '*' * @group_level
-    markup_element = @group_level == 0 ? '###' : ''
-    bullets + markup_element
+  def current_markup(leafNode = false)
+    bullet = '*'
+    four_spaces = '    '
+    left_spaces = four_spaces * (@group_level > 0 ? @group_level - 1 : @group_level)
+
+    if @group_level > 0
+      return "#{left_spaces}#{bullet} "
+    else
+      '###'
+    end
   end
+
+  def 
 
   def example_group_chain
     example_group.ancestors.reverse
