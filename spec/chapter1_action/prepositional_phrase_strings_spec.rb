@@ -1,19 +1,4 @@
-def sentence
-  self.class.description
-end
-
-def lard_factor(original_sentence, concise_sentence)
-  original_word_count = original_sentence.split.size
-  concise_word_count = concise_sentence.split.size
-
-  ((Float(original_word_count) - Float(concise_word_count)) / Float(original_word_count)).round 2
-end
-
-RSpec::Matchers.define :be_less_than do |expected|
-  match do |actual|
-    actual < expected
-  end
-end
+require 'spec_helper'
 
 describe 'Revising Prose' do
   describe "Chapter 1 - Action" do
@@ -35,7 +20,6 @@ describe 'Revising Prose' do
 
         it "Could more concisely be written 'People usually enjoy premarital sex.'" do
           concise_sentence = 'People usually enjoy premarital sex'
-          concise_sentence.length.should be_less_than sentence.length
           lard_factor(sentence, concise_sentence).should == 0.5
         end
       end
