@@ -38,5 +38,5 @@
             * [Could concisely replace 'several examples' with 'exemplifies'](https://github.com/dotnet236/revising-prose-lwr/blob/master/spec/chapter1_action/prepositional_phrase_strings_spec.rb#L144)
             * [Could be written 'The Listerine ad exemplifies this selection process.'](https://github.com/dotnet236/revising-prose-lwr/blob/master/spec/chapter1_action/prepositional_phrase_strings_spec.rb#L148)
 
-Finished in 0.01957 seconds
+Finished in 0.02962 seconds
 28 examples, 0 failures

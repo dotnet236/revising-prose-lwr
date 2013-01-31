@@ -2,6 +2,11 @@ require 'rspec/core/formatters/base_text_formatter'
 
 class MarkdownFormatter < RSpec::Core::Formatters::BaseTextFormatter
 
+  GITHUB_PATH = "https://github.com"
+  GITHUB_ACCOUNT = "dotnet236"
+  PROJECT_NAME = "revising-prose-lwr"
+  PROJECT_BRANCH = "master"
+
   def initialize(output)
     super(output)
     @group_level = 0
@@ -45,8 +50,8 @@ class MarkdownFormatter < RSpec::Core::Formatters::BaseTextFormatter
   end
 
   def passed_output(example)
-    github_path = "https://github.com/dotnet236/revising-prose-lwr/blob/master/"
-    spec_path = URI.join(github_path, example.metadata[:file_path], "#L#{example.metadata[:line_number]}").to_s.strip
+    spec_path = "#{GITHUB_PATH}/#{GITHUB_ACCOUNT}/#{PROJECT_NAME}/blob/#{PROJECT_BRANCH}/"
+    spec_path = URI.join(spec_path, "#{example.metadata[:file_path]}#L#{example.metadata[:line_number]}").to_s
     "#{current_markup(true)}[#{escape_markdown(example.description)}](#{spec_path})"
   end
 
